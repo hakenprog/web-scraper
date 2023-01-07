@@ -10,17 +10,20 @@ class NewsYCombinatorDataProvider
         return [
             'standard' => [
                 [
-                    "1.", "Classifying Python virtual environment workflows",
-                    "49 points",
-                    "29 comments",
-                    ""
+                    [
+                        "1.",
+                        "Classifying Python virtual environment workflows",
+                        "49 points",
+                        "29 comments",
+                        ""
+                    ]
                 ],
                 [
                     [
                         "rank" => 1,
                         "title" => "Classifying Python virtual environment workflows",
                         "points" => 49,
-                        "comments" => 29,
+                        "comments" => 28,
                     ],
                 ]
             ]
@@ -32,10 +35,12 @@ class NewsYCombinatorDataProvider
         return [
             'missing_points_invalid_comments' => [
                 [
-                    "2.",
-                    "6 Universal flu vaccine against all known subtypes takes promising first steps",
-                    "discuss",
-                    ""
+                    [
+                        "2.",
+                        "6 Universal flu vaccine against all known subtypes takes promising first steps",
+                        "discuss",
+                        ""
+                    ]
                 ],
                 [
                     [
@@ -54,11 +59,14 @@ class NewsYCombinatorDataProvider
         return [
             'invalid_comments' => [
                 [
-                    "3.",
-                    "24 ESP32-P4: High-performance MCU with IO-connectivity and security features",
-                    "49 points",
-                    "discuss",
-                    ""
+                    [
+                        "3.",
+                        "24 ESP32-P4: High-performance MCU with IO-connectivity and security features",
+                        "49 points",
+                        "discuss",
+                        ""
+                    ]
+
                 ],
                 [
                     [
@@ -77,10 +85,13 @@ class NewsYCombinatorDataProvider
         return [
             'missing_points' => [
                 [
-                    "5.",
-                    "21 Show HN: I Made a Logo Marketplace",
-                    "29 comments",
-                    " ",
+                    [
+                        "5.",
+                        "21 Show HN: I Made a Logo Marketplace",
+                        "29 comments",
+                        " ",
+                    ]
+
                 ],
                 [
                     [
@@ -99,10 +110,13 @@ class NewsYCombinatorDataProvider
         return [
             'missing_comments' => [
                 [
-                    "6.",
-                    "13 The Rise of Steel – Part I",
-                    "29 points",
-                    " ",
+                    [
+
+                        "6.",
+                        "13 The Rise of Steel – Part I",
+                        "29 points",
+                        " ",
+                    ]
                 ],
                 [
                     [
