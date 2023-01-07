@@ -23,7 +23,7 @@ class NewsYCombinatorDataProvider
                         "rank" => 1,
                         "title" => "Classifying Python virtual environment workflows",
                         "points" => 49,
-                        "comments" => 28,
+                        "comments" => 29,
                     ],
                 ]
             ]
@@ -113,7 +113,7 @@ class NewsYCombinatorDataProvider
                     [
 
                         "6.",
-                        "13 The Rise of Steel – Part I",
+                        "Will We Know Alien Life When We See It?",
                         "29 points",
                         " ",
                     ]
