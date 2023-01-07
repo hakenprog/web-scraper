@@ -4,6 +4,7 @@
 /public/storage
 /public/css
 /public/js
+/coverage
 /storage/*.key
 /vendor
 .env
