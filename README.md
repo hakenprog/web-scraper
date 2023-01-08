@@ -11,16 +11,17 @@
 ## Working instance of the project
 
 [Example project](https://laravel.daikuroneko.com)
+
 ## Project Set Up
 
-This application is built in Laravel. To run the project, you need the following requirements in your server or local environment:
+This application is built in Laravel 9. These are the system requirements for the project:
 
 - Nginx, Apache or any application server that can execute php.
 - PHP 8.2.1
 - PHP extensions: mb-string, curl, dom
 - Node 16.14.0
 
-You can clone the repository using this command: git clone git@github.com:hakenprog/web-scraper.git
+You can clone the repository using this command: `git clone git@github.com:hakenprog/web-scraper.git`
 Inside the project folder, run `composer install`
 Then, create a .env. You can copy the .env.example file that comes in the repository.
 Execute the following command: `php artisan key:generate`
@@ -54,14 +55,22 @@ In my experience, most of the problems are related with folders and files permis
 Link to a working instance of the project: [Example project](https://laravel.daikuroneko.com)
 
 This project is running in a Debian Linux server with php 8.1.7 and node 14.9.3
+
 ## Project structure
 
-The important files of the project are located inside de app folder, the resources folder, and the tests folder.
+The important files of the project are located inside de app folder, the services, the resources folder, and the tests folder.
 
 Inside the app folder we have the Interfaces folder. Here I created three different interfaces, WebScraper, WebScraperErrorHandler, WebScraperFormatter. These interfaces are implemented in the files inside WebScrapers folder and the Services folder.
 
 Laravel manages a powerful tool called service container. Using the service container, we can tell Laravel what implementation of the interfaces to use. For this purpose, Laravel follows the following structure. First, we have the service provider, that is located inside the app folder, in the Providers Folder. In my case, I created a WebScraperServiceProvider, that binds the interfaces to the implementations using the register method of the class. In the case that we want to use a different implementation depending on the context, Laravel has a "contextual binding". For instance, if we want to create another WebScraper, or just an implementation of any of the interfaces, we can choose where to use this new implementation using  the WebScraperServiceProvider.
+
 The implementations of the interfaces are injected in other classes using the constructor. For example, in app > WebScrapers  > NewsYCombinatorScraper, the WebScraperFormatter and the WebScraperErrorHandler are being injected using the Service Container.
+
+The WebScraperErrorHandler is in charge of handling possible errors that may occur during web scraping. If the same library (Goutte) is used, the current implementation could be used, or if necessary a new one could be created that meets the necessary requirements.
+
+The WebScraperFormatter receives the data collected during the web scraping and returns it as an array, so that it can be used by the controller to respond to the requests. How the data is formatted depends entirely on the implementation of the interface as long as an array is returned.
+
+The implementation of WebScraperErrorHandler and WebScraperFormatter can be found in the app > services folder.
 
 Finally, inside the app > HTTP > Controllers folder, I created a WebScraperController. In this controller, I'm injecting a WebScraper implementation into the constructor. This class could be used as a base for new web scraper implementations. For example, the NewsYCombinatorScraperController is extending the WebScraperController. In the case that more WebScraperControllers are needed, we can tell Laravel what WebScraper implementation to use on each case using the WebScraperServiceprovider.
 
@@ -69,6 +78,7 @@ To communicate with the frontend, I used Inertia, that has a lot of useful metho
 
 The frontend was developed using react. And for testing I used Jest and React Testing Library.
 For the backend, I used PHPUnit, that comes with Laravel.
+
 ## Unit testing
 
 To execute the testing in Laravel, just run the `php artisan test` command. Laravel will show a report in the terminal with all the relevant information. These tests are located in the tests folder, inside the root folder.
