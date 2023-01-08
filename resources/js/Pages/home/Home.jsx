@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import InputRadio from '../../components/inputRadio/InputRadio'
 import ListItem from '../../components/listItem/ListItem'
-import SortSelect from '../../components/SortSelect/SortSelect'
+import SortSelect from '../../components/sortSelect/SortSelect'
 import { getData } from '../../services/newsycombinatorService'
 import StyledHome from './Styled'
 
@@ -37,6 +37,7 @@ const Home = () => {
       <h1>Web scraper</h1>
       <p><a target="_blank" href="https://news.ycombinator.com">Visit original site</a></p>
       {filterOption !== 3 &&
+      //Display Sort Select only when the data is filtered
         <>
           <SortSelect onChange={() => setAscending(prevState => !prevState)} />
           <p><b>Ordered by {filterOption === 1 ? 'comments' : 'points'}</b></p>
