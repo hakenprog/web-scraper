@@ -28,6 +28,11 @@ class NewsYCombinatorScraperFormatter implements WebScraperFormatter
         );
     }
 
+    /**
+     * Returns the given array without the 'prev'index with the new row at the end.
+     * @param array $prevState
+     * @return array
+     */
     private function pushRow(array $prevState)
     {
         $prevItem = [...$prevState];
@@ -36,25 +41,47 @@ class NewsYCombinatorScraperFormatter implements WebScraperFormatter
         return [...$prevItem, $this->fillRowEmptyValues($row)];
     }
 
-    private function getCurrentColumnType($item, $currentRowColumn)
+    /**
+     * Returns the column name based on the current column index.
+     * @param string $item
+     * @param int $currentRowColumn
+     * @return string
+     */
+    private function getCurrentColumnType(string $item, int $currentRowColumn)
     {
         if ($currentRowColumn <= 1) return $this->columnNames[$currentRowColumn];
         if ($this->isPoints($item)) return 'points';
         return  'comments';
     }
 
+    /**
+     * Returns the column index based on the size of given array.
+     * @param array $prevItem
+     * @return int
+     */
     private function getCurrentRowColumnIndex(array $prevItem)
     {
         return key_exists('prev', $prevItem) ? sizeof($prevItem['prev']) : 0;
     }
 
-    private function formatRowItem($rowIndex, $rowItem)
+    /**
+     * Returns a number included in the given string or 0 if the column is not the title.
+     * @param int $rowIndex
+     * @param string $rowItem
+     * @return int|string
+     */
+    private function formatRowItem(int $rowIndex, string $rowItem)
     {
         if ($rowIndex !== 1) return $this->extractNumberFromString($rowItem);
         return $rowItem;
     }
 
-    private function isPoints($item)
+    /**
+     * Returns true if the given string contains the word "points".
+     * @param string $item
+     * @return bool
+     */
+    private function isPoints(string $item)
     {
         return str_contains($item, 'points');
     }
@@ -74,12 +101,12 @@ class NewsYCombinatorScraperFormatter implements WebScraperFormatter
 
     /**
      * Extracts a number of a string if exists, otherwise returns 0.
-     * @param string $str
+     * @param string $item
      * @return int
      */
-    private function extractNumberFromString(string $string)
+    private function extractNumberFromString(string $item)
     {
-        $extractedNumber = intval(preg_replace('/\D/', '', $string));
+        $extractedNumber = intval(preg_replace('/\D/', '', $item));
         return empty($extractedNumber) ? 0 : $extractedNumber;
     }
 }
