@@ -44,6 +44,7 @@ describe('Validate Home component', () => {
             expect(screen.getAllByText("Production Twitter on one machine? 100Gbps NICs and NVMe are fast")).toBeDefined();
             expect(screen.getAllByText("Tilck – A Tiny")).toBeDefined();
             expect(screen.getAllByText("Jailbroken iOS can't run macOS apps – I spent a week to find out why (2021)")).toBeDefined();
+            expect(screen.getAllByText("Three words title")).toBeDefined();
         })
 
     })
