@@ -15,7 +15,7 @@ class NewsYCombinatorWebScraping extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->apiResponse = $this->json('GET', '/api/v1/newsycbombinator');
+        $this->apiResponse = $this->json('GET', '/api/v1/newsycombinator');
     }
 
     /**

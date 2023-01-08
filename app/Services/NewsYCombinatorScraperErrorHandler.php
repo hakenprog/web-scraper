@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Interfaces\WebScraperErrorManager;
+use App\Interfaces\WebScraperErrorHandler;
 use InvalidArgumentException;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
-class NewsYCombinatorScraperErrorHandler implements WebScraperErrorManager
+class NewsYCombinatorScraperErrorHandler implements WebScraperErrorHandler
 {
     public function scrapWrapper($webscraperCallback)
     {
