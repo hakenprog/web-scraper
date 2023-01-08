@@ -5,7 +5,7 @@ namespace App\Interfaces;
 interface WebScraperErrorManager
 {
     /**
-     * Executes the we scraper inside a try catch
+     * Executes the we scraper inside a try catch block.
      * 
      * @param callable $webscraperCallback
      * @return array
