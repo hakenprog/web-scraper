@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use App\Services\NewsYCombinatorScraperErrorManager;
+use App\Services\NewsYCombinatorScraperFormatter;
 use App\WebScrapers\NewsYCombinatorScraper;
 use PHPUnit\Framework\TestCase;
 
@@ -12,9 +14,11 @@ class NewsYCombinatorWebScraperTest extends TestCase
      *
      * @return void
      */
-    public function news_y_combinator_web_scraper_is_array()
+    public function test_news_y_combinator_web_scraper_is_array()
     {
-        $scraper = new NewsYCombinatorScraper();
+        $scraper = new NewsYCombinatorScraper(new NewsYCombinatorScraperFormatter(), new NewsYCombinatorScraperErrorManager());
         $this->assertIsArray($scraper->getItems());
+        $this->assertTrue(true);
+
     }
 }
