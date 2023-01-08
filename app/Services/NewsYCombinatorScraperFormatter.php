@@ -11,6 +11,7 @@ class NewsYCombinatorScraperFormatter implements WebScraperFormatter
     /**
      *  Return an array of formatted items for the News Y Combinator Web scraper.
      * @param array $items
+     * @return array 
      */
     public function formatItems(array $items)
     {
