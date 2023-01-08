@@ -5,4 +5,8 @@ module.exports = {
     collectCoverageFrom: ['src/**/*.{js,jsx}'],
     coverageDirectory: 'coverage',
     testEnvironment: 'jsdom',
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
