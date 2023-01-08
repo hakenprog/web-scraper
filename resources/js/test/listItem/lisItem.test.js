@@ -1,7 +1,7 @@
-/**resources/js/test/index.test.js**/
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ListItem from '../Components/listItem/ListItem'
+
+import ListItem from '../../components/listItem/ListItem';
 
 describe('Validate List Item component', () => {
 
@@ -16,8 +16,9 @@ describe('Validate List Item component', () => {
         it('It should render and show the correct information', () => {
             render(<ListItem item={item} />)
             expect(screen.getAllByText(item.title)).toBeDefined()
-            expect(screen.getAllByText(item.rank)).toBeDefined()
-            expect(screen.getAllByText('Comments: 50 Points: 3')).toBeDefined()
+            expect(screen.getAllByText(`${item.rank}.`)).toBeDefined()
+            expect(screen.getAllByText('Comments: 50')).toBeDefined()
+            expect(screen.getAllByText('Points: 3')).toBeDefined()
         })
 
         it('It should not exists an incorrect title', () => {
@@ -27,7 +28,7 @@ describe('Validate List Item component', () => {
         })
     })
 
-    describe('Validate it renders correctly with invalid values.'), () => {
+    describe('Validate it renders correctly with invalid values.', () => {
         it('It should render with null values', () => {
             const item = {
                 title: 'This is a title',
@@ -45,7 +46,5 @@ describe('Validate List Item component', () => {
             }
             render(<ListItem item={item} />)
         })
-    }
-
-
+    })
 })
