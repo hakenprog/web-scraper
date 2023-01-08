@@ -7,60 +7,70 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Working instance of the project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[Example project](https://laravel.daikuroneko.com)
+## Project Set Up
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This application is built in Laravel. To run the project, you need the following requirements in your server or local environment:
 
-## Learning Laravel
+- Nginx, Apache or any application server that can execute php.
+- PHP 8.2.1
+- PHP extensions: mb-string, curl, dom
+- Node 16.14.0
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You can clone the repository using this command: git clone git@github.com:hakenprog/web-scraper.git
+Inside the project folder, run `composer install`
+Then, create a .env. You can copy the .env.example file that comes in the repository.
+Execute the following command: `php artisan key:generate`
+In the .env file we only care about the following fields:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- APP_NAME=Laravel
+- APP_ENV=local => You can change the env according to your needs
+- APP_KEY= This key should have been generated with the previous command.
+- APP_DEBUG=true => In production environments this option should be changed to false
+- APP_URL=http://localhost => You can change this url according to your needs
+- LOG_CHANNEL=stack
+- LOG_DEPRECATIONS_CHANNEL=null
+- LOG_LEVEL=debug
+- BROADCAST_DRIVER=log
+- CACHE_DRIVER=file
+- FILESYSTEM_DISK=local
+- QUEUE_CONNECTION=sync
+- SESSION_DRIVER=file
+- SESSION_LIFETIME=120
+- MIX_WEB_SCRAPER_API_URL=http://127.0.0.1:8000/api/v1/newsycombinator => This URL will be used by the frontend to retrieve the data
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Once we have the .env file with the correct configuration, we can run `npm install`.
+Then execute `npm run prod`.
 
-## Laravel Sponsors
+If everything is well configured, the project should run without any problem. If you have any error, be sure that you have APP_DEBUG activated, so Laravel can show some helpful information in the browser.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+If you are in a local environment, you can execute a local server with `php artisan serve`.
 
-### Premium Partners
+In my experience, most of the problems are related with folders and files permissions.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Link to a working instance of the project: [Example project](https://laravel.daikuroneko.com)
 
-## Contributing
+This project is running in a Debian Linux server with php 8.1.7 and node 14.9.3
+## Project structure
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The important files of the project are located inside de app folder, the resources folder, and the tests folder.
 
-## Code of Conduct
+Inside the app folder we have the Interfaces folder. Here I created three different interfaces, WebScraper, WebScraperErrorHandler, WebScraperFormatter. These interfaces are implemented in the files inside WebScrapers folder and the Services folder.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Laravel manages a powerful tool called service container. Using the service container, we can tell Laravel what implementation of the interfaces to use. For this purpose, Laravel follows the following structure. First, we have the service provider, that is located inside the app folder, in the Providers Folder. In my case, I created a WebScraperServiceProvider, that binds the interfaces to the implementations using the register method of the class. In the case that we want to use a different implementation depending on the context, Laravel has a "contextual binding". For instance, if we want to create another WebScraper, or just an implementation of any of the interfaces, we can choose where to use this new implementation using  the WebScraperServiceProvider.
+The implementations of the interfaces are injected in other classes using the constructor. For example, in app > WebScrapers  > NewsYCombinatorScraper, the WebScraperFormatter and the WebScraperErrorHandler are being injected using the Service Container.
 
-## Security Vulnerabilities
+Finally, inside the app > HTTP > Controllers folder, I created a WebScraperController. In this controller, I'm injecting a WebScraper implementation into the constructor. This class could be used as a base for new web scraper implementations. For example, the NewsYCombinatorScraperController is extending the WebScraperController. In the case that more WebScraperControllers are needed, we can tell Laravel what WebScraper implementation to use on each case using the WebScraperServiceprovider.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+To communicate with the frontend, I used Inertia, that has a lot of useful methods for handling the integration with some frontend frameworks.
 
-## License
+The frontend was developed using react. And for testing I used Jest and React Testing Library.
+For the backend, I used PHPUnit, that comes with Laravel.
+## Unit testing
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+To execute the testing in Laravel, just run the `php artisan test` command. Laravel will show a report in the terminal with all the relevant information. These tests are located in the tests folder, inside the root folder.
+
+To execute the testing in the front end, run `npm test`. A report with the coverage and some useful information will be shown in the terminal. These tests are located in the resources > js > test folder.
