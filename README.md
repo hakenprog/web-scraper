@@ -22,6 +22,7 @@ This application is built in Laravel 9. These are the system requirements for th
 - Node 16.14.0
 
 You can clone the repository using this command: `git clone git@github.com:hakenprog/web-scraper.git`
+
 Inside the project folder, run `composer install`
 Then, create a .env. You can copy the .env.example file that comes in the repository.
 Execute the following command: `php artisan key:generate`
@@ -64,7 +65,17 @@ Inside the app folder we have the Interfaces folder. Here I created three differ
 
 Laravel manages a powerful tool called service container. Using the service container, we can tell Laravel what implementation of the interfaces to use. For this purpose, Laravel follows the following structure. First, we have the service provider, that is located inside the app folder, in the Providers Folder. In my case, I created a WebScraperServiceProvider, that binds the interfaces to the implementations using the register method of the class. In the case that we want to use a different implementation depending on the context, Laravel has a "contextual binding". For instance, if we want to create another WebScraper, or just an implementation of any of the interfaces, we can choose where to use this new implementation using  the WebScraperServiceProvider.
 
+
+![image](https://user-images.githubusercontent.com/44125633/211216883-be4647f2-2f0c-435e-aaca-bf92c6b0e4e3.png)
+
+*The Service Provider*
+
 The implementations of the interfaces are injected in other classes using the constructor. For example, in app > WebScrapers  > NewsYCombinatorScraper, the WebScraperFormatter and the WebScraperErrorHandler are being injected using the Service Container.
+
+![image](https://user-images.githubusercontent.com/44125633/211216954-99b4ee31-91c3-4da2-bd54-7e270c31151a.png)
+
+*NewsYCombinatorScraper Constructor (Dependency Injection in Laravel)*
+
 
 The WebScraperErrorHandler is in charge of handling possible errors that may occur during web scraping. If the same library (Goutte) is used, the current implementation could be used, or if necessary a new one could be created that meets the necessary requirements.
 
@@ -84,3 +95,13 @@ For the backend, I used PHPUnit, that comes with Laravel.
 To execute the testing in Laravel, just run the `php artisan test` command. Laravel will show a report in the terminal with all the relevant information. These tests are located in the tests folder, inside the root folder.
 
 To execute the testing in the front end, run `npm test`. A report with the coverage and some useful information will be shown in the terminal. These tests are located in the resources > js > test folder.
+
+Current results for PHPUnit Testing
+
+![PHPUnitResults](https://user-images.githubusercontent.com/44125633/211216741-2086550d-5d5a-4a0a-9227-bec6492024f3.png)
+
+Current results for Jest Testing
+
+![Screenshot_20230108_150657](https://user-images.githubusercontent.com/44125633/211216787-1840a73c-21e2-48e8-89aa-13e493231740.png)
+
+
