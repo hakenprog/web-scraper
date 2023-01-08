@@ -3,8 +3,10 @@ export const getData = async (setData) => {
         const backendResponse = await fetch(process.env.MIX_WEB_SCRAPER_API_URL);
         const data = await backendResponse.json();
         setData(data);
+        return data;
     } catch {
         setData([]);
+        return [];
     }
 
 }
