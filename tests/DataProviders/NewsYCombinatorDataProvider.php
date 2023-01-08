@@ -86,16 +86,16 @@ class NewsYCombinatorDataProvider
             'missing_points' => [
                 [
                     [
-                        "5.",
+                        "4.",
                         "21 Show HN: I Made a Logo Marketplace",
                         "29 comments",
-                        " ",
+                        "",
                     ]
 
                 ],
                 [
                     [
-                        "rank" => 5,
+                        "rank" => 4,
                         "title" => "21 Show HN: I Made a Logo Marketplace",
                         "points" => 0,
                         "comments" => 29,
@@ -112,15 +112,15 @@ class NewsYCombinatorDataProvider
                 [
                     [
 
-                        "6.",
+                        "5.",
                         "Will We Know Alien Life When We See It?",
                         "29 points",
-                        " ",
+                        "",
                     ]
                 ],
                 [
                     [
-                        "rank" => 6,
+                        "rank" => 5,
                         "title" => "Will We Know Alien Life When We See It?",
                         "points" => 29,
                         "comments" => 0,
