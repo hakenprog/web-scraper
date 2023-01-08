@@ -14,7 +14,7 @@ class NewsYCombinatorScraperErrorHandler implements WebScraperErrorHandler
             // execute the web scrap function
             return call_user_func($webscraperCallback);
         } catch (InvalidArgumentException | TransportExceptionInterface  $exception) {
-            // return an empty array if tehere are aby problem during the scraping
+            // return an empty array if tehere are any problem during the scraping
             return [];
         }
     }

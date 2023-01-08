@@ -19,7 +19,7 @@ class NewsYCombinatorWebScraping extends TestCase
     }
 
     /**
-     * Ensure the web scraper api works.
+     * Ensures the web scraper api works.
      *
      * @return void
      */
@@ -29,7 +29,7 @@ class NewsYCombinatorWebScraping extends TestCase
     }
 
     /**
-     * Ensure the web scraper api works and returns a valid json.
+     * Ensures the web scraper api works and returns a valid json.
      *
      * @return void
      * @depends test_api_works
