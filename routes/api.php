@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\WebScraperController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\NewsYCombinatorScraperController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/newsycombinator', [WebScraperController::class, 'index']);
+Route::prefix('v1')->group(
+    function () {
+        Route::get('newsycombinator', [NewsYCombinatorScraperController::class, 'index']);
+    }
+);

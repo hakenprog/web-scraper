@@ -3,7 +3,7 @@
 namespace App\WebScrapers;
 
 use App\Interfaces\WebScraper;
-use App\Interfaces\WebScraperErrorManager;
+use App\Interfaces\WebScraperErrorHandler;
 use App\Interfaces\WebScraperFormatter;
 use App\Services\NewsYCombinatorScraperErrorManager;
 use App\Services\NewsYCombinatorScraperFormatter;
@@ -22,7 +22,7 @@ class NewsYCombinatorScraper implements WebScraper
     private $errormanager;
 
     
-    public function __construct(WebScraperFormatter $webScraperFormatter, WebScraperErrorManager $errormanager)
+    public function __construct(WebScraperFormatter $webScraperFormatter, WebScraperErrorHandler $errormanager)
     {
         $this->webScraperFormatter = $webScraperFormatter;
         $this->errormanager = $errormanager;
