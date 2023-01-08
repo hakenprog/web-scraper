@@ -2,7 +2,11 @@
 module.exports = {
     testRegex: 'resources/js/test/.*.test.js$',
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/*.{js,jsx}'],
+    collectCoverageFrom: ['./resources/js/**/*.{js,jsx}'],
     coverageDirectory: 'coverage',
     testEnvironment: 'jsdom',
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
