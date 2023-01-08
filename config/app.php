@@ -187,6 +187,16 @@ return [
          */
 
         /*
+         * Goutte service provider for web scraping 
+         */
+        Weidner\Goutte\GoutteServiceProvider::class,
+
+        /**
+         * Add provider for web scraping
+         */
+        App\Providers\WebScraperServiceprovider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
